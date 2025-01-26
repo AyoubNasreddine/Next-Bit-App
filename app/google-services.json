@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "49279559199",
+    "project_id": "next-bit-17baf",
+    "storage_bucket": "next-bit-17baf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49279559199:android:64419967bd2e243d3e572a",
+        "android_client_info": {
+          "package_name": "com.example.nextbit_application_by_ayoubNextCode_2025"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt_Q22omZWT8pMLEplcr9QY1ALNs7jcto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
