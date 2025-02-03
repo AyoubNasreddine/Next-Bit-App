@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="get_started">ابدأ</string>
+    <string name="enter_your_email">ادخل البريد الالكتروني</string>
+    <string name="enter_your_password">ادخل كلمة المرور</string>
+    <string name="enter_rep_pass">ادخل كلمة المرور مرة اخرى</string>
+    <string name="enter_your_name">ادخل اسمك</string>
+    <string name="enter_your_username">ادخل اسم المستخدم</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="register">انشاء حساب جديد</string>
+    <string name="contact">تواصل معنا</string>
+    <string name="enter_your_age">ادخل كم عمرك</string>
+    <string name="courses">الكورسات</string>
+    <string name="home">الصفحة الرئيسية</string>
+    <string name="profile">الحساب</string>
+    <string name="settings">الاعدادات</string>
+    <string name="best_courses">افضل الكورسات</string>
+    <string name="up_coming_courses">الكورسات القادمة</string>
+    <string name="app_description">"افضل تطبيق عربي لتعلم البرمجة "</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="about">معلومات اكثر عنا</string>
+</resources>

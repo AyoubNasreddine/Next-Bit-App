@@ -1,5 +1,6 @@
 package com.example.nextbit_application_by_ayoubNextCode_2025.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.nextbit_application_by_ayoubNextCode_2025.Activities.CourseDetailsActivity;
 import com.example.nextbit_application_by_ayoubNextCode_2025.Classes.Course;
 import com.example.nextbit_application_by_ayoubNextCode_2025.Classes.CourseAdapter;
 import com.example.nextbit_application_by_ayoubNextCode_2025.R;
@@ -25,11 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HomeFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -42,8 +39,8 @@ public class HomeFragment extends Fragment {
     private String mParam2;
     private FirebaseDatabase database;
     private DatabaseReference reference;
-    private RecyclerView bestCoursesRecyclerView;
-    private ProgressBar pb;
+    private RecyclerView bestCoursesRecyclerView, futureCoursesRv;
+    private ProgressBar pb, pb2;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -79,42 +76,83 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.fragment_home, container, false);
-        bestCoursesRecyclerView =v.findViewById(R.id.best_courses_recyclerView);
-        ArrayList<Course>courses=initBestCourses();
-        if (!courses.isEmpty()){
-            CourseAdapter adapter=new CourseAdapter(courses);
-            bestCoursesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            bestCoursesRecyclerView.setHasFixedSize(true);
-            bestCoursesRecyclerView.setAdapter(adapter);
-            pb=v.findViewById(R.id.progressBar1);
-            pb.setVisibility(View.INVISIBLE);
-        }
+        View v = inflater.inflate(R.layout.fragment_home, container, false);
+        bestCoursesRecyclerView = v.findViewById(R.id.best_courses_recyclerView);
+        pb = v.findViewById(R.id.progressBar1);
+        futureCoursesRv = v.findViewById(R.id.up_coming_courses_recyclerView);
+        pb2 = v.findViewById(R.id.progressBar2);
+        initBestCourses();
+        initFutureCourses();
         return v;
     }
-    public ArrayList<Course> initBestCourses(){
-        ArrayList <Course> result =new ArrayList<>();
-        database=FirebaseDatabase.getInstance();
-        reference=database.getReference("BestCourses");
+
+    public void initBestCourses() {
+        ArrayList<Course> bestCourses = new ArrayList<>();
+        database = FirebaseDatabase.getInstance();
+        //here changes
+        reference = database.getReference("BestCourses");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    for (DataSnapshot issue:snapshot.getChildren()) {
-                        if (issue!=null){
-                            result.add(issue.getValue(Course.class));
+                bestCourses.clear();
+                if (snapshot.exists()) {
+                    for (DataSnapshot issue : snapshot.getChildren()) {
+                        if (issue != null) {
+                            bestCourses.add(issue.getValue(Course.class));
                         }
                     }
-                }else {
+                    if (!bestCourses.isEmpty()) {
+                        CourseAdapter adapter = new CourseAdapter(bestCourses);
+                        bestCoursesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+                        bestCoursesRecyclerView.setHasFixedSize(true);
+                        bestCoursesRecyclerView.setAdapter(adapter);
+                        pb.setVisibility(View.INVISIBLE);
+                    }
+                } else {
                     pb.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getActivity(), "No courses Available", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "No courses Available !", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(), "something went wrong !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "something went wrong !", Toast.LENGTH_SHORT).show();
             }
         });
-        return result;
+    }
+
+    public void initFutureCourses() {
+        ArrayList<Course> futureCourses = new ArrayList<>();
+        reference = database.getReference("Courses");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot issue : snapshot.getChildren()) {
+                        if (issue != null) {
+                            Course course = issue.getValue(Course.class);
+                            if (!(course.isAvailable())) {
+                                futureCourses.add(course);
+                            }
+                        }
+                    }
+                    if (!futureCourses.isEmpty()) {
+                        CourseAdapter adapter = new CourseAdapter(futureCourses);
+                        futureCoursesRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+                        futureCoursesRv.setHasFixedSize(true);
+                        futureCoursesRv.setAdapter(adapter);
+                        pb2.setVisibility(View.INVISIBLE);
+                    }
+                } else {
+                    pb2.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getContext(), "No future Courses Available !", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //
+            }
+        });
     }
 }

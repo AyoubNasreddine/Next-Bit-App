@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.nextbit_application_by_ayoubNextCode_2025.R;
 
@@ -25,6 +27,8 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private LinearLayout logout,about;
+    private TextView username;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -60,7 +64,20 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View v =inflater.inflate(R.layout.fragment_profile, container, false);
+        logout=v.findViewById(R.id.logout_btn);
+        about=v.findViewById(R.id.about_us_btn);
+        username=v.findViewById(R.id.usernameTV);
+        if (getArguments() != null) {
+            String user = getArguments().getString("username");
+            username.setText(user);
+        }
+        logout.setOnClickListener(view ->{
+            //event
+        });
+        about.setOnClickListener(view ->{
+            //event
+        });
+        return v;
     }
 }

@@ -16,28 +16,24 @@
         android:background="@drawable/curve_white"
         android:drawableStart="@drawable/user"
         android:hint="@string/enter_your_username"
-        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline5"
-        android:autofillHints="" />
+        />
 
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="30dp"
-        android:autofillHints=""
         android:background="@drawable/curve_white"
         android:drawableStart="@drawable/lock"
         android:hint="@string/enter_your_password"
         android:inputType="textPassword"
-        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNameEditText"
         app:layout_constraintVertical_bias="0.466" />
-
     <TextView
         android:id="@+id/sign_in_button"
         android:layout_width="match_parent"

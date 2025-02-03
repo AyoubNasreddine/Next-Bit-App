@@ -32,9 +32,11 @@ public class DashboardActivity extends AppCompatActivity {
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Bundle extras = getIntent().getExtras();
+        Bundle bundle = new Bundle();
         if (extras!=null){
             username=extras.getString("username");
             Toast.makeText(this, "Welcome "+username, Toast.LENGTH_SHORT).show();
+            bundle.putString("username",username);
         }
         replaceFragment(new HomeFragment());
         binding.bottomNavigationView.setOnItemSelectedListener(menuItem -> {
@@ -43,7 +45,9 @@ public class DashboardActivity extends AppCompatActivity {
             } else if (menuItem.getItemId()==R.id.courses) {
                 replaceFragment(new CoursesFragment());
             } else if (menuItem.getItemId()==R.id.profile) {
-                replaceFragment(new ProfileFragment());
+                ProfileFragment fragment =new ProfileFragment();
+                fragment.setArguments(bundle);
+                replaceFragment(fragment);
             } else if (menuItem.getItemId()==R.id.settings) {
                 replaceFragment(new SettingsFragment());
             }

@@ -64,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
                         if (user.getName().equals(username) && user.getPassword().equals(password)) {
                             Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
                             intent.putExtra("username",user.getName());
-                            Toast.makeText(LoginActivity.this, "login successfully", Toast.LENGTH_SHORT).show();
                             startActivity(intent);
                         }else{
                             Toast.makeText(LoginActivity.this, "username or password is incorrect", Toast.LENGTH_SHORT).show();

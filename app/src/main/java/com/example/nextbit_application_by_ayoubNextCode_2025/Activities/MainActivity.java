@@ -2,10 +2,12 @@ package com.example.nextbit_application_by_ayoubNextCode_2025.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.nextbit_application_by_ayoubNextCode_2025.Classes.Course;
+
 import com.example.nextbit_application_by_ayoubNextCode_2025.R;
 import com.example.nextbit_application_by_ayoubNextCode_2025.databinding.ActivityMainBinding;
 import com.google.firebase.database.DatabaseReference;

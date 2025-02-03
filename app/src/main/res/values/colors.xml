@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFFFF</color>
-    <color name ="primary_color">#244056</color>
+    <color name ="primary_color">#052542</color>
     <color name ="light_primary_color">#4387b4</color>
     <color name="yellow">#FFFF00</color>
     <color name="fuchsia">#FF00FF</color>

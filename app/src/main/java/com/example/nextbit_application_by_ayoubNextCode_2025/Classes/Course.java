@@ -1,5 +1,4 @@
 package com.example.nextbit_application_by_ayoubNextCode_2025.Classes;
-
 public class Course {
     private String name,courseDescription;
     private int imageResource;
@@ -11,15 +10,12 @@ public class Course {
         setAvailable(available);
         setCourseDescription(courseDescription);
     }
-
     public String getCourseDescription() {
         return courseDescription;
     }
-
     public void setCourseDescription(String courseDescription) {
         this.courseDescription = courseDescription;
     }
-
     public String getName() {
         return name;
     }
